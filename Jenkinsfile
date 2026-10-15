@@ -6,6 +6,9 @@ pipeline {
         timestamps()
         disableConcurrentBuilds()
     }
+    triggers {
+        pollSCM('H/5 * * * *')
+    }
     tools {
         nodejs 'NodeJS-22'
     }
@@ -15,7 +18,6 @@ pipeline {
         PROJECT_NAME = 'devops-test1-truongnamson'
         BRANCH_NAME = 'main'
         DEPLOY_URL = 'https://devops-test1-truongnamson.vercel.app'
-        WEBSITE_DIR = 'website_thay_vu_duc_hao/website_thay_vu_duc_hao'
     }
 
     stages {
@@ -64,9 +66,9 @@ Branch: ${BRANCH_NAME}"
                 sh '''
                     set -eu
 
-                    test -f "$WEBSITE_DIR/index.html"
-                    test -f "$WEBSITE_DIR/assets/poster-day-lai-xe.png"
-                    test -f "$WEBSITE_DIR/assets/thay-vu-duc-hao.jpg"
+                    test -f index.html
+                    test -f assets/poster-day-lai-xe.png
+                    test -f assets/thay-vu-duc-hao.jpg
                     test -f README.md
 
                     echo "BUILD SUCCESS"
@@ -74,29 +76,28 @@ Branch: ${BRANCH_NAME}"
             }
         }
 
-stage('Deploy to Vercel') {
-    steps {
-        withCredentials([
-            string(credentialsId: 'vercel-token',
-                   variable: 'VERCEL_TOKEN')
-        ]) {
-            sh '''
-                set -eu
-                cd "$WEBSITE_DIR"
+        stage('Deploy to Vercel') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'vercel-token',
+                           variable: 'VERCEL_TOKEN')
+                ]) {
+                    sh '''
+                        set -eu
 
-                npx --yes vercel@latest deploy \
-                  --prod --yes \
-                  --token "$VERCEL_TOKEN" \
-                  > vercel-deploy.log 2>&1 || {
-                      cat vercel-deploy.log
-                      exit 1
-                  }
+                        npx --yes vercel@latest deploy \
+                          --prod --yes \
+                          --token "$VERCEL_TOKEN" \
+                          > vercel-deploy.log 2>&1 || {
+                              cat vercel-deploy.log
+                              exit 1
+                          }
 
-                cat vercel-deploy.log
-            '''
+                        cat vercel-deploy.log
+                    '''
+                }
+            }
         }
-    }
-}
 
     }
 

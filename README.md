@@ -17,28 +17,28 @@ học, quy trình đăng ký tham khảo, bản đồ và các cách liên hệ 
 ## Cấu trúc
 
 ```text
-website_thay_vu_duc_hao/
-└── website_thay_vu_duc_hao/
-    ├── index.html
-    └── assets/
-        ├── poster-day-lai-xe.png
-        └── thay-vu-duc-hao.jpg
+index.html
+assets/
+├── poster-day-lai-xe.png
+└── thay-vu-duc-hao.jpg
 ```
 
 ## Chạy website
 
-Mở `website_thay_vu_duc_hao/website_thay_vu_duc_hao/index.html` trong trình
-duyệt. Trang sử dụng HTML, CSS và JavaScript thuần; bản đồ cần kết nối Internet.
+Mở `index.html` trong trình duyệt. Trang sử dụng HTML, CSS và JavaScript thuần;
+bản đồ cần kết nối Internet.
 
 ## CI/CD
 
-Jenkins theo dõi nhánh `main`, kiểm tra trang và các ảnh trong thư mục website,
-sau đó triển khai nội dung thư mục này lên Vercel. Pipeline gửi thông báo trạng
-thái qua Telegram.
+Jenkins kiểm tra `index.html` và các ảnh trong `assets/`, sau đó triển khai
+website từ thư mục gốc lên Vercel. Pipeline polling SCM mỗi 5 phút để phát hiện
+thay đổi; khi có thay đổi trên SCM được cấu hình, Jenkins chạy pipeline và gửi
+thông báo trạng thái qua Telegram.
 
 Jenkins cần có các credentials `vercel-token`, `telegram-token` và
-`telegram-chat-id`. Địa chỉ website sau triển khai được cấu hình trong
-`Jenkinsfile`.
+`telegram-chat-id`, cùng công cụ NodeJS tên `NodeJS-22`. Địa chỉ website sau
+triển khai được cấu hình trong `Jenkinsfile`. Jenkins cần bật quyền truy cập
+SCM/GitHub để polling hoạt động.
 
 ## Tác giả
 
