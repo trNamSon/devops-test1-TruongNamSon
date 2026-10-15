@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps CI/CD - Trương Nam Sơn</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">DevOps<span>Lab</span></div>
+    <a href="#pipeline" class="nav-link">Quy trình CI/CD</a>
+  </header>
+
+  <main class="hero">
+    <div class="tag">AUTOMATION • CI/CD • CLOUD</div>
+    <h1>Deploy website<br /><span>tự động với Jenkins</span></h1>
+    <p>
+      Minh họa quy trình tích hợp liên tục và triển khai liên tục
+      bằng GitHub, Jenkins, Vercel và Telegram.
+    </p>
+
+    <div class="student-card">
+      <div>
+        <small>SINH VIÊN THỰC HIỆN</small>
+        <h2>Trương Nam Sơn</h2>
+        <p>Lớp: ST23A</p>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span>
+        Website hoạt động
+      </div>
+    </div>
+
+    <section id="pipeline" class="pipeline">
+      <h2>Quy trình triển khai</h2>
+      <div class="steps">
+        <div class="step"><b>01</b><span>GitHub</span><small>Push code</small></div>
+        <div class="step"><b>02</b><span>Jenkins</span><small>Pipeline</small></div>
+        <div class="step"><b>03</b><span>Build</span><small>Kiểm tra source</small></div>
+        <div class="step"><b>04</b><span>Vercel</span><small>Deploy website</small></div>
+        <div class="step"><b>05</b><span>Telegram</span><small>Thông báo</small></div>
+      </div>
+      <button id="testButton">Kiểm tra JavaScript</button>
+      <p id="message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>DevOps Practical Test 1 · 2026</footer>
+  <script src="script.js"></script>
+</body>
+</html>
