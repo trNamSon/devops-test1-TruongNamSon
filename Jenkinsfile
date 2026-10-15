@@ -6,6 +6,10 @@ pipeline {
         timestamps()
         disableConcurrentBuilds()
     }
+    tools {
+        nodejs 'NodeJS-22'
+    }
+
 
     environment {
         PROJECT_NAME = 'devops-test1-truongnamson'
