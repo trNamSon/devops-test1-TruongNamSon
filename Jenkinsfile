@@ -110,6 +110,8 @@ Branch: ${BRANCH_NAME}"
     }
 }
 
+    }
+
     post {
        success {
     withCredentials([
