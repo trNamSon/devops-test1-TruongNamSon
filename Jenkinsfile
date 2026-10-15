@@ -75,36 +75,42 @@ Branch: ${BRANCH_NAME}"
             }
         }
 
-       stage('Deploy to Vercel') {
+stage('Deploy to Vercel') {
     steps {
         withCredentials([
             string(credentialsId: 'vercel-token',
                    variable: 'VERCEL_TOKEN')
         ]) {
+            sh '''
+                set -eu
+
+                npx --yes vercel@latest deploy \
+                  --prod --yes \
+                  --token "$VERCEL_TOKEN" \
+                  > vercel-deploy.log 2>&1 || {
+                      cat vercel-deploy.log
+                      exit 1
+                  }
+
+                cat vercel-deploy.log
+
+                DEPLOY_URL=$(grep -Eo 'https://devops-test1-truongnamson\\.vercel\\.app' vercel-deploy.log | tail -n 1)
+
+                if [ -z "$DEPLOY_URL" ]; then
+                    DEPLOY_URL=$(grep -Eo 'https://[a-zA-Z0-9.-]+\\.vercel\\.app' vercel-deploy.log | tail -n 1)
+                fi
+
+                if [ -z "$DEPLOY_URL" ]; then
+                    echo "ERROR: Cannot find Vercel deployment URL"
+                    exit 1
+                fi
+
+                echo "$DEPLOY_URL" > deploy-url.txt
+                echo "Deployed website: $DEPLOY_URL"
+            '''
+
             script {
-                sh '''
-                    set -eu
-
-                    npx --yes vercel@latest deploy \
-                      --prod --yes \
-                      --token "$VERCEL_TOKEN" \
-                      > vercel-deploy.log 2>&1 || {
-                          cat vercel-deploy.log
-                          exit 1
-                      }
-
-                    cat vercel-deploy.log
-                '''
-
-                def output = readFile('vercel-deploy.log')
-                def matcher = output =~ /https:\/\/[a-zA-Z0-9.-]+\.vercel\.app/
-
-                if (matcher.find()) {
-                    env.DEPLOY_URL = matcher.group(0)
-                    echo "Deployed website: ${env.DEPLOY_URL}"
-                } else {
-                    error('Could not find Vercel URL in deployment output.')
-                }
+                env.DEPLOY_URL = readFile('deploy-url.txt').trim()
             }
         }
     }
