@@ -75,57 +75,60 @@ Branch: ${BRANCH_NAME}"
             }
         }
 
-        stage('Deploy to Vercel') {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'vercel-token',
-                           variable: 'VERCEL_TOKEN')
-                ]) {
-                    script {
-                        sh '''
-                            npx --yes vercel@latest deploy \
-                              --prod --yes \
-                              --token "$VERCEL_TOKEN" \
-                              > vercel-deploy.log 2>&1 || {
-                                  cat vercel-deploy.log
-                                  exit 1
-                              }
+       stage('Deploy to Vercel') {
+    steps {
+        withCredentials([
+            string(credentialsId: 'vercel-token',
+                   variable: 'VERCEL_TOKEN')
+        ]) {
+            script {
+                sh '''
+                    set -eu
 
-                            cat vercel-deploy.log
-                        '''
+                    npx --yes vercel@latest deploy \
+                      --prod --yes \
+                      --token "$VERCEL_TOKEN" \
+                      > vercel-deploy.log 2>&1 || {
+                          cat vercel-deploy.log
+                          exit 1
+                      }
 
-                        def output = readFile('vercel-deploy.log')
-                        def urls = output =~ /https:\/\/[a-zA-Z0-9.-]+\.vercel\.app/
-                        if (urls.find()) {
-                            env.DEPLOY_URL = urls.group(0)
-                        } else {
-                            error('Deploy command finished but no Vercel URL was found in the log.')
-                        }
-                    }
+                    cat vercel-deploy.log
+                '''
+
+                def output = readFile('vercel-deploy.log')
+                def matcher = output =~ /https:\/\/[a-zA-Z0-9.-]+\.vercel\.app/
+
+                if (matcher.find()) {
+                    env.DEPLOY_URL = matcher.group(0)
+                    echo "Deployed website: ${env.DEPLOY_URL}"
+                } else {
+                    error('Could not find Vercel URL in deployment output.')
                 }
             }
         }
     }
+}
 
     post {
-        success {
-            withCredentials([
-                string(credentialsId: 'telegram-token',
-                       variable: 'TELEGRAM_TOKEN'),
-                string(credentialsId: 'telegram-chat-id',
-                       variable: 'TELEGRAM_CHAT_ID')
-            ]) {
-                sh '''
-                    curl -fsS -X POST \
-                      "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
-                      --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
-                      --data-urlencode "text=✅ DEPLOY SUCCESS NHÉ
+       success {
+    withCredentials([
+        string(credentialsId: 'telegram-token',
+               variable: 'TELEGRAM_TOKEN'),
+        string(credentialsId: 'telegram-chat-id',
+               variable: 'TELEGRAM_CHAT_ID')
+    ]) {
+        sh '''
+            curl -fsS -X POST \
+              "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+              --data-urlencode "text=✅ DEPLOY SUCCESS NHÉ
 Project: ${PROJECT_NAME}
 Branch: ${BRANCH_NAME}
 URL: ${DEPLOY_URL}"
-                '''
-            }
-        }
+        '''
+    }
+}
 
         failure {
             withCredentials([
