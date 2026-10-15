@@ -15,6 +15,7 @@ pipeline {
         PROJECT_NAME = 'devops-test1-truongnamson'
         BRANCH_NAME = 'main'
         DEPLOY_URL = 'https://devops-test1-truongnamson.vercel.app'
+        WEBSITE_DIR = 'website_thay_vu_duc_hao/website_thay_vu_duc_hao'
     }
 
     stages {
@@ -63,12 +64,10 @@ Branch: ${BRANCH_NAME}"
                 sh '''
                     set -eu
 
-                    test -f index.html
-                    test -f style.css
-                    test -f script.js
+                    test -f "$WEBSITE_DIR/index.html"
+                    test -f "$WEBSITE_DIR/assets/poster-day-lai-xe.png"
+                    test -f "$WEBSITE_DIR/assets/thay-vu-duc-hao.jpg"
                     test -f README.md
-
-                    node --check script.js
 
                     echo "BUILD SUCCESS"
                 '''
@@ -83,6 +82,7 @@ stage('Deploy to Vercel') {
         ]) {
             sh '''
                 set -eu
+                cd "$WEBSITE_DIR"
 
                 npx --yes vercel@latest deploy \
                   --prod --yes \
