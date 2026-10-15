@@ -14,7 +14,7 @@ pipeline {
     environment {
         PROJECT_NAME = 'devops-test1-truongnamson'
         BRANCH_NAME = 'main'
-        DEPLOY_URL = ''
+        DEPLOY_URL = 'https://devops-test1-truongnamson.vercel.app'
     }
 
     stages {
@@ -93,25 +93,7 @@ stage('Deploy to Vercel') {
                   }
 
                 cat vercel-deploy.log
-
-                DEPLOY_URL=$(grep -Eo 'https://devops-test1-truongnamson\\.vercel\\.app' vercel-deploy.log | tail -n 1)
-
-                if [ -z "$DEPLOY_URL" ]; then
-                    DEPLOY_URL=$(grep -Eo 'https://[a-zA-Z0-9.-]+\\.vercel\\.app' vercel-deploy.log | tail -n 1)
-                fi
-
-                if [ -z "$DEPLOY_URL" ]; then
-                    echo "ERROR: Cannot find Vercel deployment URL"
-                    exit 1
-                fi
-
-                echo "$DEPLOY_URL" > deploy-url.txt
-                echo "Deployed website: $DEPLOY_URL"
             '''
-
-            script {
-                env.DEPLOY_URL = readFile('deploy-url.txt').trim()
-            }
         }
     }
 }
