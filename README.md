@@ -7,7 +7,7 @@ học, quy trình đăng ký tham khảo, bản đồ và các cách liên hệ 
 ## Nội dung website
 
 - Giới thiệu giáo viên và chương trình đào tạo.
-- Liên kết gọi điện và nhắn Zalo tới số `090123755`.
+- Liên kết gọi điện và nhắn Zalo tới số `0901123755`.
 - Biểu mẫu đăng ký tư vấn với kiểm tra thông tin cơ bản trên trình duyệt.
 - Bản đồ Google Maps và giao diện tương thích với màn hình di động.
 
