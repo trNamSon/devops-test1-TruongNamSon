@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#102c4e">
 <title>Thầy Vũ Đức Hảo | Dạy lái xe Quảng Nam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
 <style>
 :root{--navy:#102c4e;--blue:#1d5c91;--gold:#f4b942;--ink:#233247;--muted:#65758a;--pale:#f4f7fb}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.65}
+body{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);line-height:1.65}
 a{text-decoration:none;color:inherit}
 .container{width:min(1120px,91%);margin:auto}
 header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e7edf4}
@@ -45,9 +49,18 @@ h2{font-size:clamp(28px,3.4vw,38px);line-height:1.2;color:var(--navy);margin-bot
 .points li:before{content:"✓";display:inline-grid;place-items:center;background:#dff5e8;color:#16784a;border-radius:50%;width:24px;height:24px;margin-right:10px}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{padding:26px;border:1px solid #e4eaf1;border-radius:14px;background:#fff}
-.card .emoji{font-size:28px;margin-bottom:12px}
+.card-icon{width:34px;height:34px;color:var(--blue);margin-bottom:12px;display:grid;place-items:center}
+.card-icon .material-icon{font-size:34px}
 .card h3{color:var(--navy);margin-bottom:8px}
 .card p{color:var(--muted);font-size:14px;margin-bottom:14px}
+.benefits{background:linear-gradient(180deg,#f4f7fb 0%,#edf4fb 100%)}
+.benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.benefit-card{padding:22px 24px;background:#fff;border:1px solid #e2eaf3;border-radius:14px;box-shadow:0 6px 20px #102c4e0a;transition:transform .2s,border-color .2s,box-shadow .2s}
+.benefit-card:hover{transform:translateY(-3px);border-color:#b9d0e6;box-shadow:0 12px 28px #102c4e14}
+.benefit-icon{width:42px;height:42px;display:grid;place-items:center;margin-bottom:12px;border-radius:12px;background:#eaf3fb;color:var(--blue)}
+.benefit-icon .material-icon{font-size:25px}
+.benefit-card h3{color:var(--navy);font-size:17px;margin-bottom:7px}
+.benefit-card p{color:var(--muted);font-size:14px}
 .steps{background:var(--pale)}
 .step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
 .step{padding:12px}
@@ -62,6 +75,7 @@ h2{font-size:clamp(28px,3.4vw,38px);line-height:1.2;color:var(--navy);margin-bot
 .detail strong{display:block}
 .detail span{color:#d5e2ef;font-size:14px;overflow-wrap:anywhere}
 .form{background:#fff;color:var(--ink);padding:28px;border-radius:14px}
+.form,.form button,.form input,.form select,.form textarea{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
 .form h3{font-size:24px;color:var(--navy);margin-bottom:5px}
 .form>p{color:var(--muted);font-size:14px;margin-bottom:18px}
 .field{margin-bottom:14px}
@@ -69,6 +83,7 @@ label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
 input,select,textarea{width:100%;padding:12px;border:1px solid #d7e0ea;border-radius:7px;font:inherit;font-size:14px}
 textarea{min-height:85px;resize:vertical}
 .form button{width:100%}
+.material-icon{font-family:"Material Symbols Outlined";font-weight:normal;font-style:normal;font-size:20px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased}
 #form-notice{font-size:12px;color:#8a5a00;margin-top:12px}
 .map-wrap{background:#fff}
 .map-frame{width:100%;height:360px;border:0;border-radius:14px;background:var(--pale)}
@@ -77,16 +92,16 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
 .footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .floating{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;flex-direction:column;gap:10px}
 .float-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:999px;color:#fff;font-weight:800;box-shadow:0 5px 18px #0003}
-.call{background:#1479c9}.zalo{background:#087cf0}
+.call{background:#1479c9}.zalo{background:#087cf0}.facebook{background:#1877f2}
 @media(max-width:820px){.links a:not(.btn){display:none}.hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.hero{padding:48px 0}.poster{max-width:520px;margin:auto}.cards{grid-template-columns:1fr 1fr}.step-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.nav{min-height:68px}.brand{font-size:14px}.nav>.btn{padding:10px;font-size:12px}.hero-grid{gap:26px}section{padding:55px 0}.cards,.step-grid{grid-template-columns:1fr}.form{padding:21px}.floating{right:10px;bottom:10px}.float-btn{padding:11px 13px;font-size:13px}}
+@media(max-width:520px){.nav{min-height:68px}.brand{font-size:14px}.nav>.btn{padding:10px;font-size:12px}.hero-grid{gap:26px}section{padding:55px 0}.cards,.step-grid,.benefits-grid{grid-template-columns:1fr}.benefit-card{padding:20px}.form{padding:21px}.floating{right:10px;bottom:10px}.float-btn{padding:11px 13px;font-size:13px}}
 </style>
 </head>
 <body>
 <header>
   <div class="container nav">
     <a class="brand" href="#home">THẦY VŨ ĐỨC HẢO<small>ĐÀO TẠO LÁI XE QUẢNG NAM</small></a>
-    <nav class="links"><a href="#about">Về thầy</a><a href="#courses">Khóa học</a><a href="#map">Bản đồ</a><a class="btn gold" href="#contact">Đăng ký tư vấn</a></nav>
+    <nav class="links"><a href="#about">Về thầy</a><a href="#benefits">Ưu điểm</a><a href="#courses">Khóa học</a><a href="#map">Bản đồ</a><a class="btn gold" href="#contact">Đăng ký tư vấn</a></nav>
   </div>
 </header>
 <main>
@@ -96,8 +111,7 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
         <div class="kicker">Chuyên dạy lái xe ô tô · mô tô</div>
         <h1>Vững tay lái,<br><span>an tâm trên mọi nẻo đường</span></h1>
         <p>Tìm hiểu thông tin về thầy Vũ Đức Hảo và đăng ký tư vấn học lái xe tại Trung tâm Giáo dục nghề nghiệp Vận tải Quảng Nam.</p>
-        <div class="actions"><a class="btn gold" href="#contact">Đăng ký học ngay</a><a class="btn outline" href="tel:0901123755">☎ Gọi 0901123755</a></div>
-        <div class="note">Thông tin khóa học và lịch học sẽ được xác nhận trực tiếp với giáo viên/trung tâm.</div>
+        <div class="actions"><a class="btn gold" href="#contact">Đăng ký học ngay</a><a class="btn outline" href="tel:0901123755"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.58 2.8.7A2 2 0 0 1 22 16.92z"/></svg>Gọi 0901123755</a></div>
       </div>
       <img class="poster" src="assets/poster-day-lai-xe.png" alt="Poster giới thiệu dịch vụ dạy lái xe của thầy Vũ Đức Hảo">
     </div>
@@ -115,13 +129,26 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
       </div>
     </div>
   </section>
+  <section class="benefits" id="benefits">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Đồng hành cùng học viên</div><h2>Học lái xe thuận tiện, an tâm</h2><p>Thông tin rõ ràng, hướng dẫn tận tình và lịch học linh hoạt theo nhu cầu của bạn.</p></div>
+      <div class="benefits-grid">
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">account_balance_wallet</span></div><h3>Minh bạch học phí</h3><p>Trao đổi rõ học phí và các khoản liên quan trước khi đăng ký để học viên chủ động chuẩn bị.</p></article>
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">fact_check</span></div><h3>Hỗ trợ hồ sơ, thủ tục</h3><p>Hướng dẫn các giấy tờ cần thiết và quy trình đăng ký, giúp việc chuẩn bị hồ sơ thuận tiện hơn.</p></article>
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">event_available</span></div><h3>Lịch học linh hoạt</h3><p>Trao đổi để sắp xếp thời gian học phù hợp với lịch sinh hoạt, học tập hoặc công việc của học viên.</p></article>
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">school</span></div><h3>Hơn 5 năm kinh nghiệm</h3><p>Với hơn 5 năm kinh nghiệm giảng dạy lái xe, thầy Hảo chú trọng hướng dẫn kỹ năng thực hành và ý thức an toàn giao thông.</p></article>
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">directions_car</span></div><h3>Hỗ trợ đưa đón học viên</h3><p>Nếu gặp khó khăn khi di chuyển, học viên có thể trao đổi trước để được hỗ trợ đưa đón trong khu vực Quảng Nam – Đà Nẵng, tùy địa điểm và lịch trình thực tế.</p></article>
+        <article class="benefit-card"><div class="benefit-icon"><span class="material-icon" aria-hidden="true">forum</span></div><h3>Tư vấn tận tình</h3><p>Giải đáp thắc mắc về khóa học, hồ sơ và lịch học để học viên nắm rõ các bước trước khi đăng ký.</p></article>
+      </div>
+    </div>
+  </section>
   <section id="courses">
     <div class="container">
       <div class="section-head"><div class="kicker">Chương trình đào tạo</div><h2>Tìm hiểu khóa học</h2><p>Liên hệ để xác nhận hạng giấy phép, học phí, lịch học và điều kiện đăng ký hiện hành.</p></div>
       <div class="cards">
-        <article class="card"><div class="emoji">🚘</div><h3>Học lái xe ô tô</h3><p>Tìm hiểu nội dung học lý thuyết, thực hành và quy trình thi.</p><a class="btn outline" href="#contact">Nhận tư vấn →</a></article>
-        <article class="card"><div class="emoji">🏍️</div><h3>Học lái xe mô tô</h3><p>Liên hệ để xác nhận hạng bằng và chương trình đào tạo phù hợp.</p><a class="btn outline" href="#contact">Tìm hiểu thêm →</a></article>
-        <article class="card"><div class="emoji">📋</div><h3>Tư vấn hồ sơ</h3><p>Hỏi về giấy tờ cần chuẩn bị, điều kiện và các bước đăng ký.</p><a class="btn outline" href="#contact">Liên hệ tư vấn →</a></article>
+        <article class="card"><div class="card-icon"><span class="material-icon" aria-hidden="true">directions_car</span></div><h3>Học lái xe ô tô</h3><p>Tìm hiểu nội dung học lý thuyết, thực hành và quy trình thi.</p><a class="btn outline" href="#contact">Nhận tư vấn →</a></article>
+        <article class="card"><div class="card-icon"><span class="material-icon" aria-hidden="true">two_wheeler</span></div><h3>Học lái xe mô tô</h3><p>Liên hệ để xác nhận hạng bằng và chương trình đào tạo phù hợp.</p><a class="btn outline" href="#contact">Tìm hiểu thêm →</a></article>
+        <article class="card"><div class="card-icon"><span class="material-icon" aria-hidden="true">assignment</span></div><h3>Tư vấn hồ sơ</h3><p>Hỏi về giấy tờ cần chuẩn bị, điều kiện và các bước đăng ký.</p><a class="btn outline" href="#contact">Liên hệ tư vấn →</a></article>
       </div>
     </div>
   </section>
@@ -140,10 +167,11 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
     <div class="container contact-grid">
       <div class="contact-info">
         <div class="kicker">Liên hệ & đăng ký</div><h2>Bạn muốn bắt đầu học lái xe?</h2>
-        <p>Gọi điện hoặc nhắn Zalo để hỏi thêm về khóa học. Bạn cũng có thể để lại thông tin trong biểu mẫu.</p>
+        <p>Gọi điện, nhắn Zalo hoặc Facebook để hỏi thêm về khóa học. Bạn cũng có thể để lại thông tin trong biểu mẫu.</p>
         <div class="detail"><strong>Giáo viên</strong><span>Thầy Vũ Đức Hảo</span></div>
         <div class="detail"><strong>Đơn vị đào tạo</strong><span>Trung tâm Giáo dục nghề nghiệp Vận tải Quảng Nam</span></div>
         <div class="detail"><strong>Điện thoại / Zalo</strong><span>0901123755</span></div>
+        <div class="detail"><strong>Facebook</strong><span><a href="https://www.facebook.com/share/16KYGtEjqYm/" target="_blank" rel="noopener noreferrer">Xem trang Facebook</a></span></div>
       </div>
       <form class="form" id="registration-form">
         <h3>Đăng ký tư vấn</h3><p>Điền thông tin để chuẩn bị nội dung tư vấn.</p>
@@ -151,14 +179,14 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
         <div class="field"><label for="phone">Số điện thoại *</label><input id="phone" name="phone" type="tel" required pattern="[0-9+\s().-]{9,20}" placeholder="Nhập số điện thoại"></div>
         <div class="field"><label for="course">Nhu cầu học *</label><select id="course" name="course" required><option value="">Chọn nhu cầu</option><option>Học lái xe ô tô</option><option>Học lái xe mô tô</option><option>Tư vấn hồ sơ</option><option>Nhu cầu khác</option></select></div>
         <div class="field"><label for="message">Lời nhắn</label><textarea id="message" name="message" placeholder="Bạn muốn tìm hiểu điều gì?"></textarea></div>
-        <button class="btn gold" type="submit">Gửi yêu cầu tư vấn</button>
+        <button class="btn gold" type="submit"><span class="material-icon" aria-hidden="true">send</span>Gửi yêu cầu tư vấn</button>
         <div id="form-notice">Bản demo: biểu mẫu chưa gửi hoặc lưu thông tin. Cần kết nối hệ thống xử lý để sử dụng thực tế.</div>
       </form>
     </div>
   </section>
   <section class="map-wrap" id="map">
     <div class="container">
-      <div class="section-head"><div class="kicker">Vị trí trung tâm</div><h2>Bản đồ Google Maps</h2><p>Để ghim đúng địa điểm, cần bổ sung địa chỉ chính xác của trung tâm.</p></div>
+      <div class="section-head"><div class="kicker">Vị trí trung tâm</div><h2>Bản đồ Google Maps</h2></div>
       <iframe
         class="map-frame"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24364.850025676464!2d108.28085655291652!3d15.89740580085532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31420f0b77c86799%3A0x25ab56d33a44a5a1!2zVFJVTkcgVMOCTSBHRE5OIFbhuqxOIFThuqJJIFFOQU0!5e0!3m2!1sen!2s!4v1792072089832!5m2!1sen!2s"
@@ -173,8 +201,9 @@ footer{background:#091e35;color:#cbd7e4;padding:25px 0;font-size:13px}
 </main>
 <footer><div class="container footer-row"><span>© 2026 Thầy Vũ Đức Hảo — Website giới thiệu dạy lái xe</span><span>Trung tâm Giáo dục nghề nghiệp Vận tải Quảng Nam</span></div></footer>
 <div class="floating">
-  <a class="float-btn call" href="tel:0901123755" aria-label="Gọi điện">☎ Gọi điện</a>
+  <a class="float-btn call" href="tel:0901123755" aria-label="Gọi điện"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.58 2.8.7A2 2 0 0 1 22 16.92z"/></svg>Gọi điện</a>
   <a class="float-btn zalo" href="https://zalo.me/0901123755" target="_blank" rel="noopener" aria-label="Nhắn Zalo">Zalo Nhắn tin</a>
+  <a class="float-btn facebook" href="https://www.facebook.com/share/16KYGtEjqYm/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
 </div>
 <script>
 document.getElementById('registration-form').addEventListener('submit', function(event){
